@@ -1,4 +1,4 @@
-# ENSF-381-B01-Assignment-03
+# ENSF-381-L01-Assignment-03
 ---
 Enhance the Learning Management System (LMS) built in Assignments 1 and 2 by adding interactivity
 and dynamic features using JavaScript. Focus on DOM manipulation, form validations, API integration
