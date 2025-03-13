@@ -56,7 +56,7 @@ main[class="login"], main[class="index"], main[class = "signup"] {
     max-width: 90%;
 }
 
-/* Login Form */
+/* Login + Signup Form */
 form {
     display: flex;
     flex-direction: column;
@@ -100,6 +100,14 @@ main a[href="#"]{
 
 main a[href="#"]:hover {
     text-decoration: underline;
+}
+
+#messageBox {
+    display: none;
+    padding: 10px;
+    margin: 20px auto 10px auto;
+    max-width: 95%;
+    text-align: center;
 }
 
 /* Course View */
