@@ -110,6 +110,12 @@ main a[href="#"]:hover {
     text-align: center;
 }
 
+.signup-link {
+    display: block;
+    text-align: center;
+    margin: 20px 0;
+}
+
 /* Course View */
 main[class="courseview"] {
     padding: 20px;
