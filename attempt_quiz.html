@@ -11,10 +11,14 @@
         
         document.addEventListener("DOMContentLoaded", function() {
             const timerDisplay = document.getElementById("timer");
+            const lowTimeColor = document.getElementById("timer").style.color
             interval = setInterval(() => {
                 let minutes = Math.floor(timeLeft / 60);
                 let seconds = timeLeft % 60;
                 timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+                if (timeLeft <= 30) {lowTimeColor = "#D32F2F"}
+
                 if (timeLeft <= 0) {
                     clearInterval(interval);
                     window.location.href = "leaderboard.html";
@@ -45,7 +49,7 @@
             }
             
             if (!allAnswered) {
-                document.getElementById("scoreDisplay").textContent = "Please complete all unanswered questions.";
+                alert("Please complete all unanswered questions.");
                 return;
             }
             
@@ -85,7 +89,8 @@
             <p>Attempts Allowed: 1</p>
         </div>
         
-        <h2>Quiz Timer: <span id="timer">10:00</span></h2>
+        <h2 class = "timerColor">Quiz Timer: <span id="timer">10:00</span></h2>
+
         <h3>Question 1</h3>
         <p>What does HTML stand for?</p>
         <div class="Qs">
@@ -102,13 +107,14 @@
             <input type="checkbox" id="q2b" name="q2" value="<span>">
             <label for="q2b">&lt;span&gt;</label><br>
         </div>
-        <button class="ans" onclick="validateQuiz()">Submit Answers</button>
-        <br><br>
-        <p id="scoreDisplay" style="font-size: 20px; font-weight: bold; color: #004080;"></p>
         <br>
+        <button class="ans" onclick="validateQuiz()">Submit Answers</button>
+
+        <br><br>
         <a href="leaderboard.html">
             <button class="FinQz">Finish Quiz</button>
         </a>
+        <p id="scoreDisplay" class = "quizFeedback"></p>
     </main>
     <footer>
         <p>&copy; 2025 LMS. All rights reserved.</p>

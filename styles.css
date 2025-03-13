@@ -229,6 +229,10 @@ p {
     color: #004080;
 }
 
+.timerColor {
+    color: #004080;
+}
+
 /* Leaderboard */
 main[class="leaderboard"] tr[class="heading"]{
     background-color: #4CAF50; 
