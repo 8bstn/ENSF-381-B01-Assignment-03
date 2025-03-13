@@ -6,39 +6,57 @@
     <title>Signup - LMS</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script>
-        function validateSignup() {
+        function validateSignup(event) {
+            event.preventDefault();
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
             const confirmPassword = document.getElementById("confirmPassword").value;
             const email = document.getElementById("email").value;
-            let errorMsg = "";
+            const errorBox = document.getElementById("errorBox");
+            errorBox.innerHTML = "";
+            errorBox.style.display = "none";
+            let errors = [];
             
             const usernameRegex = /^[A-Za-z][A-Za-z0-9_-]{2,19}$/;
             const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_=+\[\]{}|;:'",.<>?/`~]).{8,}$/;
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             
             if (!usernameRegex.test(username)) {
-                errorMsg += "Invalid username. It must be 3-20 characters long, start with a letter, and contain only letters, numbers, hyphens, or underscores.\n";
+                errors.push("Invalid username. Must be 3-20 characters, start with a letter, and contain only letters, numbers, hyphens, or underscores.");
             }
             if (!passwordRegex.test(password)) {
-                errorMsg += "Invalid password. It must be at least 8 characters long and contain uppercase, lowercase, a number, and a special character.\n";
+                errors.push("Invalid password. Must be at least 8 characters long and contain uppercase, lowercase, a number, and a special character.");
             }
             if (password !== confirmPassword) {
-                errorMsg += "Passwords do not match.\n";
+                errors.push("Passwords do not match.");
             }
             if (!emailRegex.test(email)) {
-                errorMsg += "Invalid email format.\n";
+                errors.push("Invalid email format.");
             }
             
-            if (errorMsg) {
-                alert(errorMsg);
+            if (errors.length > 0) {
+                errorBox.style.display = "block";
+                errorBox.innerHTML = errors.map(err => `<p>${err}</p>`).join("");
                 return false;
             }
+            
+            errorBox.style.display = "none";
             alert("Signup successful! Redirecting to login page.");
             window.location.href = "login.html";
             return false;
         }
     </script>
+    <style>
+        #errorBox {
+            display: none;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -47,7 +65,8 @@
     </header>
     <main class="signup">
         <h2>Signup</h2>
-        <form onsubmit="return validateSignup()">
+        <div id="errorBox"></div>
+        <form onsubmit="return validateSignup(event)">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required><br><br>
             

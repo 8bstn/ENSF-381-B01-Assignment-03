@@ -47,7 +47,7 @@ nav a:hover {
 }
 
 /* Main Content */
-main[class="login"], main[class="index"] {
+main[class="login"], main[class="index"], main[class = "signup"] {
     padding: 20px;
     text-align: center;
     align-items: center;
@@ -69,7 +69,7 @@ form {
     max-width: 100%;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"] , input[type = "email"]{
     width: 250px;
     padding: 10px;
     margin: 10px 0;
