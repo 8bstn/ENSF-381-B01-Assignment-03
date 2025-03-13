@@ -12,9 +12,9 @@
             const password = document.getElementById("password").value;
             const confirmPassword = document.getElementById("confirmPassword").value;
             const email = document.getElementById("email").value;
-            const errorBox = document.getElementById("errorBox");
-            errorBox.innerHTML = "";
-            errorBox.style.display = "none";
+            const messageBox = document.getElementById("messageBox");
+            messageBox.innerHTML = "";
+            messageBox.style.display = "none";
             let errors = [];
             
             const usernameRegex = /^[A-Za-z][A-Za-z0-9_-]{2,19}$/;
@@ -22,50 +22,55 @@
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             
             if (!usernameRegex.test(username)) {
-                errors.push("Invalid username. Must be 3-20 characters, start with a letter, and contain only letters, numbers, hyphens, or underscores.");
+                errors.push("Invalid username (Reason: Must be 3-20 characters, start with a letter, and contain only letters, numbers, hyphens, or underscores.)");
             }
             if (!passwordRegex.test(password)) {
-                errors.push("Invalid password. Must be at least 8 characters long and contain uppercase, lowercase, a number, and a special character.");
+                errors.push("Invalid password (Reason: Must be at least 8 characters long and contain uppercase, lowercase, a number, and a special character.)");
             }
             if (password !== confirmPassword) {
-                errors.push("Passwords do not match.");
+                errors.push("Passwords do not match");
             }
             if (!emailRegex.test(email)) {
-                errors.push("Invalid email format.");
+                errors.push("Invalid email (Reason: Must be in a valid email format, e.g., user@example.com.)");
             }
             
             if (errors.length > 0) {
-                errorBox.style.display = "block";
-                errorBox.innerHTML = errors.map(err => `<p>${err}</p>`).join("");
+                messageBox.style.display = "block";
+                messageBox.style.backgroundColor = "#ffffff";
+                messageBox.style.color = "#000000";
+                messageBox.style.border = "2px solid #000000";
+                messageBox.innerHTML = errors.map(err => `<p>${err}</p>`).join("<br>");
                 return false;
             }
             
-            errorBox.style.display = "none";
-            alert("Signup successful! Redirecting to login page.");
-            window.location.href = "login.html";
+            messageBox.style.display = "block";
+            messageBox.style.backgroundColor = "#ffffff";
+            messageBox.style.color = "#000000";
+            messageBox.style.border = "2px solid #000000";
+            messageBox.innerHTML = "Signup successful! Redirecting to login...";
+            
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 1000); // 1-second delay before redirection
             return false;
         }
     </script>
-    <style>
-        #errorBox {
-            display: none;
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-        }
-    </style>
 </head>
+
 <body>
     <header>
         <img src="logo.jpg" alt="LMS Logo" style="width: 100px; height: 100px;">
         <h1>LMS - Learning Management System</h1>
     </header>
+
+    <div>
+        <nav>
+            <a href="index.html">Homepage</a>
+        </nav>
+    </div>
+
     <main class="signup">
-        <h2>Signup</h2>
-        <div id="errorBox"></div>
+        <h2>Sign Up</h2>
         <form onsubmit="return validateSignup(event)">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required><br><br>
@@ -79,8 +84,11 @@
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required><br><br>
             
-            <button type="submit">Signup</button>
+            <button type="submit">Sign Up</button>
         </form>
+        <div id="messageBox"></div>
+        <br>
+        <a href="login.html">Already have an account? Login here</a>
     </main>
     <footer>
         <p>&copy; 2025 LMS. All rights reserved.</p>
