@@ -110,10 +110,10 @@ main a[href="#"]:hover {
     text-align: center;
 }
 
-.signup-link {
+.signupLink {
     display: block;
     text-align: center;
-    margin: 20px 0;
+    margin: 15px 0 5px 0;
 }
 
 /* Course View */
