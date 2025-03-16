@@ -282,3 +282,22 @@ footer {
     padding: 10px;
     margin-top: 20px;
 }
+ /* Example styling for dynamic messages */
+#messageBox {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    display: none; /* hidden by default */
+  }
+  /* Success styling */
+  .success {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
+  /* Error styling */
+  .error {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
