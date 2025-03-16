@@ -301,3 +301,7 @@ footer {
     color: black;
     border: 1px solid black;
   }
+  .cv td div:hover {
+    background-color: #ffffcc;
+    transition: background-color 0.3s;
+  }
