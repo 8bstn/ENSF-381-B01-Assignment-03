@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Course View - LMS</title>
   <link rel="stylesheet" type="text/css" href="styles.css" />
- 
 </head>
 <body>
   <header>
@@ -56,7 +55,7 @@
             </div>
           </td>
         </tr>
-          <tr class ="rowss">
+        <tr>
           <td>
             <div>
               <img src="course1.jpg" alt="Course 1">
@@ -114,34 +113,30 @@
       button.addEventListener('click', function() {
         let course = this.closest('td');
         let courseImage = course.querySelector('img');
-    
-        let row2 = document.querySelectorAll('.Enrolled table .row2 td');
-    
-        if (row2.length < 3) {
-      
-          document.querySelector('.Enrolled table .rowss').appendChild(course);
+        let table = document.querySelector('.Enrolled table');
+        
+        let rows = table.querySelectorAll('tr');
+        let lastRow = rows[rows.length - 1];
+        
+        if (lastRow.querySelectorAll('td').length < 3) {
+          lastRow.appendChild(course);
         } else {
-
-          let newRow = document.createElement('tr'); 
-          newRow.classList.add('row3');
-
+          let newRow = document.createElement('tr');
           newRow.appendChild(course);
- 
-          document.querySelector('.Enrolled table').appendChild(newRow);
+          table.appendChild(newRow);
         }
-     
+
         course.querySelector('.accept').style.display = 'none';
         course.querySelector('.decline').style.display = 'none';
-    
-        courseImage.src = 'course1.jpg';   
-        
+   
+        courseImage.src = 'course1.jpg';
+ 
         let link = document.createElement('a');
-        link.href = 'attempt_quiz.html'; 
-        link.textContent = 'Attempt Quiz';  
-        link.style.display = 'block';  
-    
+        link.href = 'attempt_quiz.html';
+        link.textContent = 'Attempt Quiz';
+        link.style.display = 'block';
         course.appendChild(link);
-    
+        
         course.addEventListener('mouseenter', () => {
           course.style.backgroundColor = '#ffffff';
         });
@@ -151,22 +146,20 @@
       });
     });
     
-      
     document.querySelectorAll('.decline').forEach(button => {
       button.addEventListener('click', function() {
         this.closest('td').remove();
       });
     });
-      
+  
     document.querySelectorAll('.Enrolled table td').forEach(course => {
       course.addEventListener('mouseenter', () => {
         course.style.backgroundColor = '#ffffff';
       });
       course.addEventListener('mouseleave', () => {
-        course.style.backgroundColor = ''; 
+        course.style.backgroundColor = '';
       });
     });
-    
   </script>
 </body>
 </html>
