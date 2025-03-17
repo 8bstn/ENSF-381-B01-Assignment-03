@@ -118,7 +118,6 @@
         let rows = table.querySelectorAll('tr');
         let lastRow = rows[rows.length - 1];
         
-
         if (lastRow.querySelectorAll('td').length < 3) {
           lastRow.appendChild(course);
         } else {
@@ -126,21 +125,17 @@
           newRow.appendChild(course);
           table.appendChild(newRow);
         }
-        
+
         course.querySelector('.accept').style.display = 'none';
         course.querySelector('.decline').style.display = 'none';
-        
+   
         courseImage.src = 'course1.jpg';
-
-        let existingQuizLink = course.querySelector('a[href="attempt_quiz.html"]');
-        if (existingQuizLink) {
-          existingQuizLink.remove();
-        }
-        
-        let pendingText = document.createElement('p');
-        pendingText.textContent = 'Pending';
-        pendingText.style.fontWeight = 'bold';
-        course.appendChild(pendingText);
+ 
+        let link = document.createElement('a');
+        link.href = 'attempt_quiz.html';
+        link.textContent = 'Attempt Quiz';
+        link.style.display = 'block';
+        course.appendChild(link);
         
         course.addEventListener('mouseenter', () => {
           course.style.backgroundColor = '#ffffff';
@@ -156,7 +151,7 @@
         this.closest('td').remove();
       });
     });
-    
+  
     document.querySelectorAll('.Enrolled table td').forEach(course => {
       course.addEventListener('mouseenter', () => {
         course.style.backgroundColor = '#ffffff';
