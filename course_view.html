@@ -110,34 +110,36 @@
   </footer>
 
   <script>
-    const acceptButtons = document.querySelectorAll('.accept');
-    const declineButtons = document.querySelectorAll('.decline');
+ acceptButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const courseDiv = button.closest('div');
+    const courseClone = courseDiv.cloneNode(true);
 
-    acceptButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const courseDiv = button.closest('div');
-        const courseClone = courseDiv.cloneNode(true);
+    courseClone.querySelectorAll('button').forEach(btn => btn.remove());
 
-        courseClone.querySelectorAll('button').forEach(btn => btn.remove());
+    const quizLink = document.createElement('a');
+    quizLink.href = "attempt_quiz.html";
+    quizLink.textContent = "Attempt Quiz";
+    courseClone.appendChild(quizLink);
 
-        const enrolledTable = document.querySelector('.Enrolled table.cv');
-        let lastRow = enrolledTable.querySelector('tr:last-child');
+    const enrolledTable = document.querySelector('.Enrolled table.cv');
+    let lastRow = enrolledTable.querySelector('tr:last-child');
 
-        const newTd = document.createElement('td');
-        newTd.appendChild(courseClone);
+    if (lastRow && lastRow.children.length < 3) {
+      const newTd = document.createElement('td');
+      newTd.appendChild(courseClone);
+      lastRow.appendChild(newTd);
+    } else {
+      const newRow = document.createElement('tr');
+      const newTd = document.createElement('td');
+      newTd.appendChild(courseClone);
+      newRow.appendChild(newTd);
+      enrolledTable.appendChild(newRow);
+    }
 
-        lastRow.appendChild(newTd);
-
-        courseDiv.parentNode.remove();
-      });
-    });
-
-    declineButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const courseTd = button.closest('td');
-        courseTd.remove();
-      });
-    });
+    courseDiv.closest('td').remove();
+  });
+});
   </script>
 </body>
 </html>
