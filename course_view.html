@@ -110,13 +110,13 @@
   </footer>
 
   <script>
- acceptButtons.forEach(button => {
+acceptButtons.forEach(button => {
   button.addEventListener('click', () => {
     const courseDiv = button.closest('div');
     const courseClone = courseDiv.cloneNode(true);
 
     courseClone.querySelectorAll('button').forEach(btn => btn.remove());
-
+    
     const quizLink = document.createElement('a');
     quizLink.href = "attempt_quiz.html";
     quizLink.textContent = "Attempt Quiz";
@@ -124,7 +124,7 @@
 
     const enrolledTable = document.querySelector('.Enrolled table.cv');
     let lastRow = enrolledTable.querySelector('tr:last-child');
-
+    
     if (lastRow && lastRow.children.length < 3) {
       const newTd = document.createElement('td');
       newTd.appendChild(courseClone);
@@ -137,7 +137,15 @@
       enrolledTable.appendChild(newRow);
     }
 
-    courseDiv.closest('td').remove();
+    const courseTd = courseDiv.closest('td');
+    courseTd.remove();
+  });
+});
+
+declineButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const courseTd = button.closest('td');
+    courseTd.remove();
   });
 });
   </script>
